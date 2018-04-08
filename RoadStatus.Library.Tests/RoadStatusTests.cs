@@ -94,6 +94,7 @@ namespace RoadApi.Library.Tests
             Assert.IsNotNull(RoadStatus.LastErrorCode);
         }
 
+        // Keep this test in the end
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void Register_APIKeys_NotAvailableException_Test()
