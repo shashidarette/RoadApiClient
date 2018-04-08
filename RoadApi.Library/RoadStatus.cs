@@ -8,13 +8,18 @@ namespace RoadApi.Library
 {
     public class RoadStatus
     {
-        public static bool GetStatus(string roadId)
+        public static RoadInformation GetStatus(string roadId)
         {
+            RoadInformation info = new RoadInformation();
             if (roadId != "A1")
             {
-                return false;
+                info.Valid = false;
+                return info;
             }
-            return true;
+
+            info.Valid = true;
+            info.Name = roadId;
+            return info;
         }
     }
 }

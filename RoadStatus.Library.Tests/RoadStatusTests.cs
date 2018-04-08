@@ -36,15 +36,22 @@ namespace RoadApi.Library.Tests
         [TestMethod]
         public void Check_ValidRoadStatus_Test()
         {
-            bool status = RoadStatus.GetStatus("A1");
-            Assert.IsTrue(status);
+            RoadInformation status = RoadStatus.GetStatus("A1");
+            Assert.IsTrue(status.Valid);
         }
 
         [TestMethod]
         public void Check_InvalidRoadStatus_Test()
         {
-            bool status = RoadStatus.GetStatus("A1000");
-            Assert.IsFalse(status);
+            RoadInformation status = RoadStatus.GetStatus("A1000");
+            Assert.IsFalse(status.Valid);
+        }
+
+        [TestMethod]
+        public void Check_ValidRoadStatus_DisplayName_Test()
+        {
+            RoadInformation status = RoadStatus.GetStatus("A1");
+            Assert.IsNotNull(status.Name);
         }
     }
 }
