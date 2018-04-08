@@ -39,5 +39,12 @@ namespace RoadApi.Library.Tests
             bool status = RoadStatus.GetStatus("A1");
             Assert.IsTrue(status);
         }
+
+        [TestMethod]
+        public void Check_InvalidRoadStatus_Test()
+        {
+            bool status = RoadStatus.GetStatus("A1000");
+            Assert.IsFalse(status);
+        }
     }
 }

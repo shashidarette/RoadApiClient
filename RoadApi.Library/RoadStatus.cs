@@ -10,6 +10,10 @@ namespace RoadApi.Library
     {
         public static bool GetStatus(string roadId)
         {
+            if (roadId != "A1")
+            {
+                return false;
+            }
             return true;
         }
     }
