@@ -38,10 +38,7 @@ namespace RoadApi.Library
             RoadInformation info = new RoadInformation();
             if (ValidateApiKeys())
             {
-                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-                HttpClient apiClient = new HttpClient();
-                apiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                apiClient.BaseAddress = new Uri(TfLRoadUrl);
+                HttpClient apiClient = GetTfLApiClient();
 
                 HttpResponseMessage response = apiClient.GetAsync("Road/" + roadId + TflKeys).Result;
 
@@ -71,6 +68,15 @@ namespace RoadApi.Library
                 throw new InvalidOperationException("TfL Api keys have not been initialized.");
             }
             return info;
+        }
+
+        private static HttpClient GetTfLApiClient()
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            HttpClient apiClient = new HttpClient();
+            apiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            apiClient.BaseAddress = new Uri(TfLRoadUrl);
+            return apiClient;
         }
     }
 }

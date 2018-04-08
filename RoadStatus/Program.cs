@@ -10,6 +10,11 @@ namespace RoadApi.Client
 {
     class Program
     {
+        private const string ValidaRoadMessage = "The status of the {0} is as follows\r\n" +
+                                                        "Road Status is {1}\r\n" +
+                                                        "Road Status Description is {2}.";
+        private const string InvalidRoadMessage = "{0} is not a valid road\r\n";
+
         static int Main(string[] args)
         {
             int status = 0;
@@ -26,14 +31,12 @@ namespace RoadApi.Client
                 RoadInformation info = RoadStatus.GetStatus(roadId);
                 if (info.Valid)
                 {
-                    msg = string.Format("The status of the {0} is as follows\r\n" +
-                                                "Road Status is {1}\r\n" +
-                                                "Road Status Description is {2}.",
+                    msg = string.Format(ValidaRoadMessage,
                                                 info.Name, info.StatusSeverity, info.StatusSeverityDescription);
                 }
                 else
                 {
-                    msg = string.Format("{0} is not a valid road\r\n", roadId);
+                    msg = string.Format(InvalidRoadMessage, roadId);
                     status = 1;
 
                 }
