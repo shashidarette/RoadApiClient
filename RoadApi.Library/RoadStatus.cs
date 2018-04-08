@@ -19,6 +19,8 @@ namespace RoadApi.Library
 
             info.Valid = true;
             info.Name = roadId;
+            info.StatusSeverity = "Good";
+            info.StatusSeverityDescription = "No delays";
             return info;
         }
     }
