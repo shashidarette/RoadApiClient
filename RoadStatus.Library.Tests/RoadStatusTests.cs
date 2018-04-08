@@ -67,5 +67,19 @@ namespace RoadApi.Library.Tests
             RoadInformation status = RoadStatus.GetStatus("A1");
             Assert.IsNotNull(status.StatusSeverityDescription);
         }
+
+        [TestMethod]
+        public void Check_InvalidRoadStatus_ErrorMessage_Test()
+        {
+            RoadInformation status = RoadStatus.GetStatus("A1000");
+            Assert.IsNotNull(RoadStatus.LastErrorMessage);
+        }
+
+        [TestMethod]
+        public void Check_InvalidRoadStatus_ErrorCode_Test()
+        {
+            RoadInformation status = RoadStatus.GetStatus("A1000");
+            Assert.IsNotNull(RoadStatus.LastErrorCode);
+        }
     }
 }
