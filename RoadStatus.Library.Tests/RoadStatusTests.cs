@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RoadApi.Library;
 
 namespace RoadApi.Library.Tests
 {
@@ -33,8 +34,10 @@ namespace RoadApi.Library.Tests
         //Then the application should exit with a non-zero System Error code
 
         [TestMethod]
-        public void BasicTest()
+        public void Check_ValidRoadStatus_Test()
         {
+            bool status = RoadStatus.GetStatus("A1");
+            Assert.IsTrue(status);
         }
     }
 }
