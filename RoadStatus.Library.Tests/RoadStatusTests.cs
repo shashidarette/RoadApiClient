@@ -33,6 +33,15 @@ namespace RoadApi.Library.Tests
         //When the client is run
         //Then the application should exit with a non-zero System Error code
 
+        [TestInitialize]
+        public void Setup()
+        {
+            // Set the desired appId and appKey
+            string tfLAppId = string.Empty; // Add TfL app id
+            string tflAppKey = string.Empty; // Add TfL app key
+            RoadStatus.SetApiKeys(tfLAppId, tflAppKey);
+        }
+
         [TestMethod]
         public void Check_ValidRoadStatus_Test()
         {
@@ -80,6 +89,14 @@ namespace RoadApi.Library.Tests
         {
             RoadInformation status = RoadStatus.GetStatus("A1000");
             Assert.IsNotNull(RoadStatus.LastErrorCode);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Register_APIKeys_NotAvailableException()
+        {
+            RoadStatus.SetApiKeys(string.Empty, string.Empty);
+            RoadInformation status = RoadStatus.GetStatus("A1");
         }
     }
 }
