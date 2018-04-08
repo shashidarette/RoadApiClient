@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RoadApi.Library;
+using System.Configuration;
 
 namespace RoadApi.Library.Tests
 {
@@ -37,8 +38,10 @@ namespace RoadApi.Library.Tests
         public void Setup()
         {
             // Set the desired appId and appKey
-            string tfLAppId = string.Empty; // Add TfL app id
-            string tflAppKey = string.Empty; // Add TfL app key
+            // Add TfL app id in App.config
+            string tfLAppId = ConfigurationManager.AppSettings["TflAppId"];
+            // Add TfL app key in App.config
+            string tflAppKey = ConfigurationManager.AppSettings["TflAppKey"]; 
             RoadStatus.SetApiKeys(tfLAppId, tflAppKey);
         }
 
@@ -93,7 +96,7 @@ namespace RoadApi.Library.Tests
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void Register_APIKeys_NotAvailableException()
+        public void Register_APIKeys_NotAvailableException_Test()
         {
             RoadStatus.SetApiKeys(string.Empty, string.Empty);
             RoadInformation status = RoadStatus.GetStatus("A1");
