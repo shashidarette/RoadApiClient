@@ -5,17 +5,21 @@ using Tfl.Api.Presentation.Entities;
 
 namespace RoadApi.Library
 {
+    /**
+     * Class responsible for RoadStatus api calls
+     * */
     public class RoadStatus
     {
         public static string LastErrorMessage { get; private set; }
         public static HttpStatusCode LastErrorCode { get; private set; }
 
+        // Responsible to the required call to get the RoadStatus
         public static RoadInformation GetStatus(string roadId)
         {
-            TfLApi tFLApi = TfLApi.GetInstance();
+            TfLApiClient tFLApi = TfLApiClient.GetInstance();
             RoadInformation info = new RoadInformation();
 
-            HttpClient apiClient = tFLApi.GetApiClient();
+            HttpClient apiClient = tFLApi.GetApiConnection();
             string query = tFLApi.FormatQueryString("Road/" + roadId);
             HttpResponseMessage response = apiClient.GetAsync(query).Result;
 

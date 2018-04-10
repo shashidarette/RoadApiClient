@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace RoadApi.Client
 {
+    /**
+     * Comand client responsible for communication with TflAPi and RoadStatus
+     * */
     class Program
     {
         private const string ValidaRoadMessage = "The status of the {0} is as follows\r\n" +
@@ -21,7 +24,7 @@ namespace RoadApi.Client
 
             string tflAppId = ConfigurationManager.AppSettings["TflAppId"];
             string tflAppKey = ConfigurationManager.AppSettings["TflAppKey"];
-            TfLApi.GetInstance().SetApiKeys(tflAppId, tflAppKey);
+            TfLApiClient.GetInstance().SetApiKeys(tflAppId, tflAppKey);
 
             if (args != null && args.Length > 0)
             {

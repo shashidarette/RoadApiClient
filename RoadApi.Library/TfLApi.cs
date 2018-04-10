@@ -5,27 +5,31 @@ using System.Net.Http.Headers;
 
 namespace RoadApi.Library
 {
-    public class TfLApi
+    /**
+     * Singleton class responsible to setup communiction with TflApi
+     * */
+    public class TfLApiClient
     {
-        private static TfLApi _instance;
+        private static TfLApiClient _instance;
         
+        // main TfL api URL
         private const string TfL_API_URL = "https://api.tfl.gov.uk";
         private string m_AppId;
         private string m_AppKey;
         private string m_AppKeys;
 
-        private TfLApi()
+        private TfLApiClient()
         {
             m_AppKey = string.Empty;
             m_AppId = string.Empty;
             m_AppKeys = string.Empty;
         }
 
-        public static TfLApi GetInstance()
+        public static TfLApiClient GetInstance()
         {
             if (_instance == null)
             {
-                _instance = new TfLApi();
+                _instance = new TfLApiClient();
             }
 
             return _instance;
@@ -40,10 +44,17 @@ namespace RoadApi.Library
         {
             m_AppId = appId;
             m_AppKey = appKey;
-            m_AppKeys = "?app_id=" + m_AppId + "&" + "?app_key=" + m_AppKey;
+
+            if (ValidateApiKeys())
+            {
+                m_AppKeys = "?app_id=" + m_AppId + "&" + "?app_key=" + m_AppKey;
+            } else
+            {
+                m_AppKeys = string.Empty;
+            }
         }
 
-        public HttpClient GetApiClient()
+        public HttpClient GetApiConnection()
         {
             if (ValidateApiKeys())
             {

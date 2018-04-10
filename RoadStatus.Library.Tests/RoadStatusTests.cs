@@ -42,7 +42,7 @@ namespace RoadApi.Library.Tests
             string tfLAppId = ConfigurationManager.AppSettings["TflAppId"];
             // Add TfL app key in App.config
             string tflAppKey = ConfigurationManager.AppSettings["TflAppKey"];
-            TfLApi.GetInstance().SetApiKeys(tfLAppId, tflAppKey);
+            TfLApiClient.GetInstance().SetApiKeys(tfLAppId, tflAppKey);
         }
 
         [TestMethod]
@@ -99,7 +99,7 @@ namespace RoadApi.Library.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void Register_APIKeys_NotAvailableException_Test()
         {
-            TfLApi.GetInstance().SetApiKeys(string.Empty, string.Empty);
+            TfLApiClient.GetInstance().SetApiKeys(string.Empty, string.Empty);
             RoadInformation status = RoadStatus.GetStatus("A1");
         }
     }

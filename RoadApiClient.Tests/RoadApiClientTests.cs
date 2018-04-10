@@ -24,6 +24,8 @@ namespace RoadApiClient.Tests
     //When the client is run
     //Then the application should exit with a non-zero System Error code
 
+    // The purpose of this test class is verfity the output of the Console output with required output
+    // no tests implemented yet
     [TestClass]
     public class RoadApiClientTests
     {
