@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RoadApi.Library
+﻿namespace RoadApi.Library
 {
-    public class RoadInformation
+    public struct RoadInformation
     {
         public object Name { get; set; }
         public object StatusSeverity { get; set; }

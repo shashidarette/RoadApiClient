@@ -21,7 +21,7 @@ namespace RoadApi.Client
 
             string tflAppId = ConfigurationManager.AppSettings["TflAppId"];
             string tflAppKey = ConfigurationManager.AppSettings["TflAppKey"];
-            RoadStatus.SetApiKeys(tflAppId, tflAppKey);
+            TfLApi.GetInstance().SetApiKeys(tflAppId, tflAppKey);
 
             if (args != null && args.Length > 0)
             {
